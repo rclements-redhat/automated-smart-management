@@ -7,7 +7,7 @@
     # https://access.redhat.com/documentation/en-us/red_hat_satellite/6.11/html-single/release_notes/index
     # Check satellite version is greater than or equal to 6.11
     disconnected_setting_name: >-
-      "{{ (extra_vars_satellite_version|float >= 6.11|float) | ternary('content_disconnected','subscription_connection_enabled') }}"
+      "{{ (extra_vars_satellite_version|float >= 6.11|float) | ternary('subscription_connection_enabled','content_disconnected') }}"
   tasks:
     - name: disconnected mode on ==> "{{ disconnected_mode }}"
       command: >-
