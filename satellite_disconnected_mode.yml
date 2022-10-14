@@ -10,8 +10,8 @@
       "{{ (extra_vars_satellite_version|float >= 6.11|float) | ternary('subscription_connection_enabled','content_disconnected') }}"
   tasks:
     - name: disconnected mode on ==> "{{ disconnected_mode }}"
-      command: >-
-        "hammer settings set --name {{ disconnected_setting_name }} --value {{ disconnected_mode }}"
+      ansible.builtin.command: >-
+        hammer settings set --name {{ disconnected_setting_name }} --value {{ disconnected_mode }}
       register: hammer_disconnect
       ignore_errors: true
 
