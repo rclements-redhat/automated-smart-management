@@ -4,7 +4,7 @@
 satellite_version: "{{ extra_vars_satellite_version | default('6.11') }}"
 
 # Satellite 6.11 changes the noun before the version to "Utils" instead of "Tools" in previous versions
-satellite_tools_noun: "{{ (satellite version == '6.11') | ternary('Utils','Tools') }}"
+satellite_tools_noun: "{{ (satellite_version == '6.11') | ternary('Utils','Tools') }}"
 
 # Build the entire prefix
 satellite_tools_prefix: "Red Hat Satellite {{ satellite_tools_noun }} {{ satellite_version }}"
