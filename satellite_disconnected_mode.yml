@@ -6,12 +6,12 @@
     # Satellite 6.11 renames content_disconnected mode to subscription_connection_enabled
     # https://access.redhat.com/documentation/en-us/red_hat_satellite/6.11/html-single/release_notes/index
     # Check satellite version is greater than or equal to 6.11
-    disconnected_setting_name: >
+    disconnected_setting_name: >-
       "{{ (extra_vars_satellite_version|float >= 6.11|float) | ternary('content_disconnected','subscription_connection_enabled') }}"
   tasks:
     - name: disconnected mode on ==> "{{ disconnected_mode }}"
       command: >-
-        hammer settings set --name content_disconnected --value {{ disconnected_mode }}
+        "hammer settings set --name {{ disconnected_setting_name }} --value {{ disconnected_mode }}"
       register: hammer_disconnect
       ignore_errors: true
 
