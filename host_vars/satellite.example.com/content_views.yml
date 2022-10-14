@@ -2,7 +2,12 @@
 # extra_vars_satellite_version can be defined in template
 # - if not defined, will default to version 6.11
 satellite_version: "{{ extra_vars_satellite_version | default('6.11') }}"
-satellite_tools_prefix: "Red Hat Satellite Tools {{ satellite_version }}"
+
+# Satellite 6.11 changes the noun before the version to "Utils" instead of "Tools" in previous versions
+satellite_tools_noun: "{{ (satellite version == '6.11') | ternary('Tools','Utils') }}"
+
+# Build the entire prefix
+satellite_tools_prefix: "Red Hat Satellite {{ satellite_tools_noun }} {{ satellite_version }}"
 
 foreman_content_views:
 
